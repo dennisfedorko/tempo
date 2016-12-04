@@ -237,8 +237,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, SWRevealViewControllerDel
 		case PeopleSearch
 		case Liked
 		case Profile
+		case Share
 		
 		init?(fullType: String) {
+			
 			guard let last = fullType.components(separatedBy: ".").last else {return nil}
 			self.init(rawValue: last)
 		}

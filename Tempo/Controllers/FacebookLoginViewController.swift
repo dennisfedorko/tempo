@@ -26,22 +26,28 @@ class FacebookLoginViewController: UIViewController {
         super.viewDidLoad()
 		
 		view.backgroundColor = .tempoOnboardingGray
-		view.alpha = 0.0
 		layoutSubviews()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		
+		UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseIn, animations: {
+			self.logoImageView.center.y -= (self.view.bounds.height * 0.2)
+		})
+		
 		UIView.animate(withDuration: 1.0, delay: 0.5, options: .curveEaseIn, animations: {
-			self.view.alpha = 1.0
+			self.tempoLabel.alpha = 1.0
+			self.descriptionLabel.alpha = 1.0
+			self.loginButton.alpha = 1.0
 		})
 	}
 	
 	func layoutSubviews() {
 		// Logo Image
-		logoImageView = UIImageView(frame: CGRect(x: 0, y: view.frame.height * 0.19, width: view.frame.width * 0.427, height: view.frame.width * 0.427))
+		logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: view.frame.width * 0.427, height: view.frame.width * 0.427))
 		logoImageView.center.x = view.center.x
+		logoImageView.center.y = view.center.y
 		logoImageView.image = #imageLiteral(resourceName: "TempoLogo")
 		
 		// Tempo Label
@@ -81,6 +87,11 @@ class FacebookLoginViewController: UIViewController {
 		loginButton.addTarget(self, action: #selector(loginToFacebook), for: .touchUpInside)
 		loginButton.addTarget(self, action: #selector(pressButton), for: .touchDown)
 		loginButton.addTarget(self, action: #selector(releaseButton), for: .touchDragExit)
+		
+		
+		tempoLabel.alpha = 0.0
+		descriptionLabel.alpha = 0.0
+		loginButton.alpha = 0.0
 		
 		view.addSubview(logoImageView)
 		view.addSubview(tempoLabel)
