@@ -31,9 +31,10 @@ class FacebookLoginViewController: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		
 		UIView.animate(withDuration: 0.4, delay: 0.0, options: .curveEaseIn, animations: {
-			self.logoImageView.center.y -= (self.view.bounds.height * 0.2)
+			if self.logoImageView.center.y == self.view.center.y {
+				self.logoImageView.center.y -= (self.view.bounds.height * 0.2)
+			}
 		})
 		
 		UIView.animate(withDuration: 1.0, delay: 0.5, options: .curveEaseIn, animations: {
@@ -88,7 +89,6 @@ class FacebookLoginViewController: UIViewController {
 		loginButton.addTarget(self, action: #selector(pressButton), for: .touchDown)
 		loginButton.addTarget(self, action: #selector(releaseButton), for: .touchDragExit)
 		
-		
 		tempoLabel.alpha = 0.0
 		descriptionLabel.alpha = 0.0
 		loginButton.alpha = 0.0
@@ -111,11 +111,11 @@ class FacebookLoginViewController: UIViewController {
 	
 	func hideActivityIndicator() {
 		view.isUserInteractionEnabled = true
-
-		descriptionLabel.alpha = 1.0
 		
 		activityIndicatorView.stopAnimating()
 		activityIndicatorView.removeFromSuperview()
+		
+//		descriptionLabel.alpha = 1.0
 	}
 	
 	func pressButton() {
