@@ -39,8 +39,10 @@ class FacebookLoginViewController: UIViewController {
 		
 		UIView.animate(withDuration: 1.0, delay: 0.5, options: .curveEaseIn, animations: {
 			self.tempoLabel.alpha = 1.0
-			self.descriptionLabel.alpha = 1.0
 			self.loginButton.alpha = 1.0
+			if !self.activityIndicatorView.isAnimating {
+				self.descriptionLabel.alpha = 1.0
+			}
 		})
 	}
 	
